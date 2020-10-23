@@ -44,6 +44,8 @@ ip addr show --- Give the eth0 interface and loopback
 ```
 nmcli --- Gives Detailed Information of eth0 interface and loopback
 
+Output:
+
 ens5: connected to System ens5
         "Amazon.com Elastic"
         ethernet (ena), 02:93:D4:D3:56:61, hw, mtu 9001
@@ -74,6 +76,8 @@ Use "nmcli device show" to get complete information about known devices and
 
 ```
 nmcli device show
+
+Output:
 
 GENERAL.DEVICE:                         ens5
 GENERAL.TYPE:                           ethernet
@@ -113,6 +117,8 @@ IP6.GATEWAY:                            --
 
 ```
 ip route show  --- Gives the route of default gateway
+
+Output:
 
 default via 172.31.112.1 dev ens5 proto dhcp metric 100 
 172.31.112.0/20 dev ens5 proto kernel scope link src 172.31.117.107 metric 100
@@ -233,4 +239,19 @@ ip route show tab 2
 
 ip rule add from 10.0.1.0/24 tab 1
 ip rule add from 10.0.1.0/24 tab 2
+```
+
+# Testing the Ports Connectivity
+
+```
+telnet 8.8.8.8 80 
+telnet 8.8.8.8 443
+```
+
+```
+nc -l 100 # Making netcat to listen on port 100
+```
+
+```
+tcpdump -n src host 10.0.1.2
 ```
