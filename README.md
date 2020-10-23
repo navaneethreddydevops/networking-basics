@@ -150,3 +150,35 @@ fe80::93:d4ff:fed3:5661              local                   unspec             
         ff00::/ 8                                                      ens5 local
         default        unreachable                   kernel              lo 
 ```
+
+```
+# To check if network manager is running
+systemctl status NetworkManager
+```
+
+```
+Network Topology
+```
+
+### Connection TroubleShooting
+
+# Vlan MAC Addressing Tools
+
+```
+rping
+```
+# Address Routing and Network Authentication Tools
+
+```
+traceroute
+tracepath
+```
+
+# Blocked Ports and Firewalls
+
+```
+ss
+telnet
+tcpdump
+nc
+```
