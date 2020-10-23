@@ -182,3 +182,18 @@ telnet
 tcpdump
 nc
 ```
+
+# DNS Tools
+
+```
+dig 
+```
+
+# Server Ports that are serving
+
+```
+ss -lntp
+ss -lntp | grep 443
+ss -lntp | grep 80   # For webserver quick check if port of nginx is open
+
+```
