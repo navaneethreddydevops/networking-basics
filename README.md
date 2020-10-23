@@ -196,5 +196,16 @@ dig amazon.com
 ss -lntp
 ss -lntp | grep 443
 ss -lntp | grep 80   # For webserver quick check if port of nginx is open
+ss -lntp | grep 22   # For SSH deamon check
+```
 
+# CURL Basics
+
+```
+curl -I 10.127.10.1
+```
+
+# Check what services is running
+```
+systemctl status {firewalld,iptables}
 ```
