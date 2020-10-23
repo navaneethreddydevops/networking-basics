@@ -1,8 +1,9 @@
 # networking-basics
-networking-basics
 
 ```
 ifconfig --- Give the eth0 interface and loopback
+
+Output:
 
 ens5: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 9001
         inet 172.31.117.107  netmask 255.255.240.0  broadcast 172.31.127.255
@@ -25,6 +26,8 @@ lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
 ```
 ```
 ip addr show --- Give the eth0 interface and loopback
+
+Output:
 
 1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
     link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
