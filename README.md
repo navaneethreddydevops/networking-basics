@@ -71,3 +71,82 @@ DNS configuration:
 Use "nmcli device show" to get complete information about known devices and
 "nmcli connection show" to get an overview on active connection profiles.
 ```
+
+```
+nmcli device show
+
+GENERAL.DEVICE:                         ens5
+GENERAL.TYPE:                           ethernet
+GENERAL.HWADDR:                         02:93:D4:D3:56:61
+GENERAL.MTU:                            9001
+GENERAL.STATE:                          100 (connected)
+GENERAL.CONNECTION:                     System ens5
+GENERAL.CON-PATH:                       /org/freedesktop/NetworkManager/ActiveConnection/1
+WIRED-PROPERTIES.CARRIER:               on
+IP4.ADDRESS[1]:                         172.31.117.107/20
+IP4.GATEWAY:                            172.31.112.1
+IP4.ROUTE[1]:                           dst = 0.0.0.0/0, nh = 172.31.112.1, mt = 100
+IP4.ROUTE[2]:                           dst = 172.31.112.0/20, nh = 0.0.0.0, mt = 100
+IP4.DNS[1]:                             172.31.0.2
+IP4.DOMAIN[1]:                          us-west-1.compute.internal
+IP6.ADDRESS[1]:                         2600:1f1c:2bf:6400:d319:54c0:7900:e207/128
+IP6.ADDRESS[2]:                         fe80::93:d4ff:fed3:5661/64
+IP6.GATEWAY:                            fe80::dc:bcff:fe49:79ce
+IP6.ROUTE[1]:                           dst = 2600:1f1c:2bf:6400::/64, nh = ::, mt = 100
+IP6.ROUTE[2]:                           dst = ::/0, nh = fe80::dc:bcff:fe49:79ce, mt = 100
+IP6.ROUTE[3]:                           dst = ff00::/8, nh = ::, mt = 256, table=255
+IP6.ROUTE[4]:                           dst = fe80::/64, nh = ::, mt = 100
+IP6.ROUTE[5]:                           dst = 2600:1f1c:2bf:6400:d319:54c0:7900:e207/128, nh = ::, mt = 100
+
+GENERAL.DEVICE:                         lo
+GENERAL.TYPE:                           loopback
+GENERAL.HWADDR:                         00:00:00:00:00:00
+GENERAL.MTU:                            65536
+GENERAL.STATE:                          10 (unmanaged)
+GENERAL.CONNECTION:                     --
+GENERAL.CON-PATH:                       --
+IP4.ADDRESS[1]:                         127.0.0.1/8
+IP4.GATEWAY:                            --
+IP6.ADDRESS[1]:                         ::1/128
+IP6.GATEWAY:                            --
+```
+
+```
+ip route show  --- Gives the route of default gateway
+
+default via 172.31.112.1 dev ens5 proto dhcp metric 100 
+172.31.112.0/20 dev ens5 proto kernel scope link src 172.31.117.107 metric 100
+```
+```
+routel         --- Gives the entire routing information
+
+        target            gateway          source    proto    scope    dev tbl
+        default       172.31.112.1                     dhcp            ens5 
+  172.31.112.0/ 20                  172.31.117.107   kernel     link   ens5 
+      127.0.0.0          broadcast       127.0.0.1   kernel     link     lo local
+     127.0.0.0/ 8            local       127.0.0.1   kernel     host     lo local
+      127.0.0.1              local       127.0.0.1   kernel     host     lo local
+127.255.255.255          broadcast       127.0.0.1   kernel     link     lo local
+   172.31.112.0          broadcast  172.31.117.107   kernel     link   ens5 local
+ 172.31.117.107              local  172.31.117.107   kernel     host   ens5 local
+ 172.31.127.255          broadcast  172.31.117.107   kernel     link   ens5 local
+            ::/ 96     unreachable                                       lo 
+::ffff:0.0.0.0/ 96     unreachable                                       lo 
+    2002:a00::/ 24     unreachable                                       lo 
+   2002:7f00::/ 24     unreachable                                       lo 
+   2002:a9fe::/ 32     unreachable                                       lo 
+   2002:ac10::/ 28     unreachable                                       lo 
+   2002:c0a8::/ 32     unreachable                                       lo 
+   2002:e000::/ 19     unreachable                                       lo 
+2600:1f1c:2bf:6400:d319:54c0:7900:e207                                      kernel            ens5 
+2600:1f1c:2bf:6400::/ 64                                       ra            ens5 
+   3ffe:ffff::/ 32     unreachable                                       lo 
+        fe80::/ 64                                   kernel            ens5 
+        default    fe80::dc:bcff:fe49:79ce                       ra            ens5 
+        default        unreachable                   kernel              lo 
+            ::1              local                   unspec              lo local
+2600:1f1c:2bf:6400:d319:54c0:7900:e207              local                   unspec              lo local
+fe80::93:d4ff:fed3:5661              local                   unspec              lo local
+        ff00::/ 8                                                      ens5 local
+        default        unreachable                   kernel              lo 
+```
