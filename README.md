@@ -187,6 +187,7 @@ nc
 
 ```
 dig 
+dig amazon.com
 ```
 
 # Server Ports that are serving
