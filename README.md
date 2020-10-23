@@ -209,3 +209,23 @@ curl -I 10.127.10.1
 ```
 systemctl status {firewalld,iptables}
 ```
+
+# Firewall
+
+```
+firewall-cmd --list-all   ### Show all services that are added to firewall
+
+firewall-cmd --permanent --add-service=httpd ### To add service to firewall of localhost
+
+firewall-cmd --reload
+```
+
+# Route Tables 
+
+```
+route -n 
+
+ip route add 10.0.1.0/24 dev eth0 tab 1  # Adding the subnet cidrs to routetable of table1 on eth0 (Local Network Interface)
+ip route add 10.0.1.0/24 dev eth2 tab 2  # Adding the subnet cidrs to routetable of table2 on eth1 (Additional Local Network Interface)
+
+```
